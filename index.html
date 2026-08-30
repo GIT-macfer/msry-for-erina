@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>For Eri 🌸 Our First Monthsary</title>
+<meta name="description" content="A little garden, grown one click at a time." />
+
+<!-- Elegant serif for emotional headings + soft rounded sans for body/UI -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ============================================================
+       BACKGROUND LAYER
+       Night sky gradient + generated stars/particles live here.
+       Populated dynamically in script.js so density can adapt
+       to screen size without bloating the HTML.
+  ============================================================= -->
+  <div id="sky" aria-hidden="true">
+    <div id="stars"></div>
+    <div id="fireflies"></div>
+  </div>
+
+  <!-- ============================================================
+       AFFIRMATION BUBBLES
+       Soft floating words of love/reassurance, spawned continuously
+       from page load until closed. Decorative only — clicks pass
+       straight through to the garden underneath.
+  ============================================================= -->
+  <div id="bubble-layer" aria-hidden="true"></div>
+
+  <!-- ============================================================
+       MAIN GARDEN
+       Every click/tap inside this element plants a flower.
+  ============================================================= -->
+  <main id="garden" role="application" aria-label="Interactive flower garden, tap anywhere to plant a flower">
+
+    <!-- Soft title watermark, always present but very quiet -->
+    <div id="garden-title">
+      <span class="eyebrow">1st Monthsary</span>
+      <h1>Eri's Garden</h1>
+    </div>
+
+    <!-- Opening instruction, fades away after the first flower -->
+    <p id="instruction">✿ Click anywhere to plant a flower ✿</p>
+
+    <!-- Milestone toast, e.g. "Look how beautiful it became." -->
+    <div id="milestone-toast" class="hidden" role="status" aria-live="polite"></div>
+
+    <!-- Flowers are appended here as absolutely-positioned elements -->
+    <div id="flower-layer" aria-hidden="true"></div>
+
+    <!-- Quiet flower counter, bottom corner -->
+    <div id="counter"><span id="counter-num">0</span> flowers planted</div>
+  </main>
+
+  <!-- ============================================================
+       FINAL SCENE
+       Hidden until the planting milestone is reached. Flowers
+       migrate here visually via JS-driven transforms, then the
+       letter reveals itself.
+  ============================================================= -->
+  <section id="final-scene" class="hidden" aria-hidden="true">
+    <div id="bouquet-glow"></div>
+    <div id="letter-card">
+      <p class="letter-kicker">✿ From my heart to yours ✿</p>
+      <p id="letter-text"></p>
+      <button id="plant-more-btn" type="button">🌸 Plant More Flowers</button>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       MUSIC CONTROL
+       Optional local music/music.mp3. Never autoplays — the user
+       must tap this button first, respecting mobile autoplay rules.
+  ============================================================= -->
+  <button id="music-btn" type="button" aria-pressed="false" aria-label="Play background music">
+    <span id="music-icon">♪</span>
+  </button>
+  <audio id="bg-music" src="music/music.mp3" loop preload="none"></audio>
+
+  <!-- Small on-screen hint for the planting effect (ripple), created per-click in JS -->
+
+  <script src="script.js"></script>
+</body>
+</html>
