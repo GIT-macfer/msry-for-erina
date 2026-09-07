@@ -640,3 +640,64 @@ body {
 #garden.garden-unlocked { visibility:visible; pointer-events:auto; animation:gardenReveal 1.8s var(--ease-soft) both; }
 @keyframes gardenReveal { from { opacity:0; transform:scale(1.05); filter:blur(8px); } to { opacity:1; transform:scale(1); filter:blur(0); } }
 @media (max-width:520px) { .question-card{padding:24px 16px}.cosmic-panel{padding:18px} #answer-zone{height:220px} #yes-btn{left:28%;top:60%} #no-btn{left:72%;top:60%} }
+
+/* ========================================================================== 
+   FIXED CINEMATIC TRANSITIONS / CELEBRATION
+   ========================================================================== */
+.cosmic-panel.panel-exit {
+  opacity: 0 !important;
+  transform: scale(1.08) translateY(-10px) !important;
+  filter: blur(6px);
+}
+
+#heart-scene.active #heart-constellation {
+  animation: heartConstellationFloat 5.2s ease-in-out both;
+}
+@keyframes heartConstellationFloat {
+  0% { transform: scale(.78); opacity: .15; }
+  35% { transform: scale(1); opacity: 1; }
+  100% { transform: scale(1.04); opacity: 1; }
+}
+
+#earth-scene.active .solar-system {
+  animation: earthApproach 5s var(--ease-soft) forwards;
+}
+
+#yes-btn.accepted {
+  transform: translate(-50%, -50%) scale(1.18);
+  filter: brightness(1.15);
+}
+#yes-btn.takeover.accepted {
+  transform: none;
+}
+
+.yes-burst {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  overflow: hidden;
+  pointer-events: none;
+}
+.yes-burst span {
+  position: absolute;
+  bottom: -10vh;
+  font-size: var(--burst-size, 1.2rem);
+  animation: burstRise 3.8s var(--ease-soft) forwards;
+  animation-delay: var(--burst-delay, 0s);
+}
+@keyframes burstRise {
+  0% { transform: translateY(0) scale(.7) rotate(0deg); opacity: 0; }
+  12% { opacity: 1; }
+  100% { transform: translateY(-120vh) scale(1.35) rotate(18deg); opacity: 0; }
+}
+
+#music-btn { z-index: 90; }
+#cosmic-intro:not(.finished) ~ #music-btn {
+  background: rgba(7,3,13,.55);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cosmic-panel.panel-exit { filter: none; }
+  #heart-scene.active #heart-constellation,
+  #earth-scene.active .solar-system { animation: none !important; opacity: 1; transform: none; }
+}
