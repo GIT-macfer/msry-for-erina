@@ -569,3 +569,74 @@ body {
   #instruction { bottom: 70px; }
   #letter-card { padding: 24px 20px; border-radius: 18px; }
 }
+
+/* ==========================================================================\n   CINEMATIC MONTHSARY OPENING\n   Galaxy -> heart constellation -> Earth -> playful YES/NO question\n   ========================================================================== */
+#cosmic-intro {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(116, 55, 143, .26), transparent 28%),
+    radial-gradient(circle at 80% 65%, rgba(179, 39, 63, .22), transparent 30%),
+    radial-gradient(circle at 50% 120%, rgba(232, 192, 115, .12), transparent 42%),
+    #07030d;
+  transition: opacity 1.4s var(--ease-soft), visibility 1.4s;
+}
+#cosmic-intro.finished { opacity: 0; visibility: hidden; pointer-events: none; }
+#cosmic-stars { position: absolute; inset: -10%; transform: scale(1.08); transition: transform 7s ease, opacity 2s ease; }
+#cosmic-intro.travelling #cosmic-stars { transform: scale(1.55) rotate(2deg); }
+.cosmic-star {
+  position: absolute; width: var(--cs); height: var(--cs); border-radius: 50%;
+  background: #fff8ef; opacity: var(--co); box-shadow: 0 0 8px rgba(255,245,225,.8);
+  animation: cosmicTwinkle var(--cd) ease-in-out infinite alternate;
+}
+@keyframes cosmicTwinkle { to { opacity: .18; transform: scale(.65); } }
+.nebula { position:absolute; width:55vw; height:55vw; border-radius:50%; filter:blur(70px); opacity:.14; animation:nebulaDrift 12s ease-in-out infinite alternate; }
+.nebula-a { left:-18vw; top:-12vw; background:#a557c2; }
+.nebula-b { right:-20vw; bottom:-18vw; background:#d84a63; animation-delay:-5s; }
+@keyframes nebulaDrift { to { transform:translate(7vw,4vh) scale(1.15); } }
+.cosmic-panel {
+  position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center;
+  text-align:center; padding:28px; opacity:0; visibility:hidden; transform:scale(.94) translateY(12px);
+  transition:opacity 1.2s var(--ease-soft), transform 1.6s var(--ease-soft), visibility 1.2s;
+  pointer-events:none;
+}
+.cosmic-panel.active { opacity:1; visibility:visible; transform:scale(1) translateY(0); pointer-events:auto; }
+.cosmic-kicker { font-size:.72rem; letter-spacing:.28em; color:var(--gold); margin:0 0 12px; }
+.cosmic-panel h1, .cosmic-panel h2 { font-family:var(--font-display); font-weight:500; margin:0; text-shadow:0 0 30px rgba(242,166,176,.25); }
+.cosmic-panel h1 { font-size:clamp(2.4rem,8vw,5.5rem); max-width:900px; }
+.cosmic-panel h2 { font-size:clamp(2rem,6vw,4.2rem); max-width:760px; }
+.cosmic-panel p:not(.cosmic-kicker) { max-width:650px; line-height:1.7; color:var(--cream-dim); }
+.cosmic-btn, #yes-btn, #no-btn { font:600 1rem var(--font-body); border:0; border-radius:999px; padding:14px 25px; cursor:pointer; }
+.cosmic-btn { margin-top:18px; color:#1a0a12; background:linear-gradient(135deg,var(--gold),var(--blush)); box-shadow:0 8px 35px rgba(232,192,115,.25); transition:transform .25s ease; }
+.cosmic-btn:hover { transform:translateY(-2px) scale(1.03); }
+.scene-caption { margin-top:34px; }
+
+#heart-constellation { position:relative; width:min(72vw,520px); height:min(58vw,420px); filter:drop-shadow(0 0 18px rgba(242,166,176,.45)); }
+.heart-star { position:absolute; width:var(--hs); height:var(--hs); border-radius:50%; background:#fff7df; box-shadow:0 0 12px 3px rgba(242,166,176,.7); opacity:0; transform:scale(0); animation:heartStarIn .9s var(--ease-soft) forwards, heartPulse 2.4s ease-in-out infinite alternate 1s; animation-delay:var(--hd), calc(var(--hd) + .8s); }
+@keyframes heartStarIn { to { opacity:1; transform:scale(1); } }
+@keyframes heartPulse { to { filter:brightness(1.7); transform:scale(1.28); } }
+
+.solar-system { position:relative; width:min(76vw,520px); aspect-ratio:1; display:grid; place-items:center; animation:earthApproach 5s var(--ease-soft) forwards; }
+@keyframes earthApproach { from { transform:scale(.28); opacity:.2; } to { transform:scale(1); opacity:1; } }
+#earth { width:clamp(120px,28vw,190px); aspect-ratio:1; border-radius:50%; position:relative; overflow:hidden; background:radial-gradient(circle at 32% 28%,#79c8ff 0 8%,#2778bd 38%,#0e3e78 72%,#061d42 100%); box-shadow:inset -24px -12px 35px rgba(0,0,0,.45),0 0 45px rgba(77,174,255,.35); }
+#earth::before { content:''; position:absolute; inset:18% 10% 28% 12%; border-radius:55% 35% 60% 40%; background:#6dbb70; transform:rotate(-18deg); box-shadow:52px 42px 0 -13px #4e9e5d,-30px 68px 0 -18px #72b96c; opacity:.9; }
+.earth-shine { position:absolute; inset:0; border-radius:50%; background:radial-gradient(circle at 28% 22%,rgba(255,255,255,.38),transparent 30%); }
+.orbit { position:absolute; border:1px solid rgba(246,234,217,.15); border-radius:50%; animation:spinOrbit 10s linear infinite; }
+.orbit-one { width:68%; height:68%; } .orbit-two { width:94%; height:94%; animation-duration:16s; animation-direction:reverse; }
+.tiny-planet { position:absolute; width:12px; height:12px; border-radius:50%; background:var(--gold); top:8%; left:20%; box-shadow:0 0 12px rgba(232,192,115,.7); }
+.planet-pink { background:var(--blush); top:72%; left:84%; }
+@keyframes spinOrbit { to { transform:rotate(360deg); } }
+
+.question-card { width:min(92vw,720px); min-height:360px; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:34px; border:1px solid rgba(246,234,217,.15); border-radius:28px; background:rgba(20,8,28,.48); backdrop-filter:blur(12px); box-shadow:0 0 70px rgba(179,39,63,.16); }
+#answer-zone { position:relative; width:min(86vw,560px); height:170px; margin-top:18px; }
+#yes-btn { position:absolute; left:22%; top:55%; transform:translate(-50%,-50%) scale(var(--yes-scale,1)); transform-origin:center; z-index:3; color:#1a0a12; background:linear-gradient(135deg,var(--gold),var(--blush)); box-shadow:0 10px 32px rgba(242,166,176,.28); transition:left .28s ease,top .28s ease,transform .35s var(--ease-soft),width .45s var(--ease-soft),height .45s var(--ease-soft),border-radius .45s ease,font-size .35s ease; }
+#no-btn { position:absolute; left:73%; top:55%; transform:translate(-50%,-50%); z-index:4; color:var(--cream); background:rgba(255,255,255,.09); border:1px solid rgba(255,255,255,.2); transition:left .16s ease,top .16s ease,transform .16s ease; touch-action:none; }
+#no-btn.dodging { transform:translate(-50%,-50%) rotate(var(--no-rot,0deg)); }
+#yes-btn.takeover { position:fixed; inset:0; left:0; top:0; width:100vw; height:100dvh; transform:none; border-radius:0; font-size:clamp(2rem,8vw,5rem); z-index:50; }
+#question-tease { min-height:28px; transition:opacity .2s ease; }
+.garden-locked { visibility:hidden; pointer-events:none; }
+#garden.garden-unlocked { visibility:visible; pointer-events:auto; animation:gardenReveal 1.8s var(--ease-soft) both; }
+@keyframes gardenReveal { from { opacity:0; transform:scale(1.05); filter:blur(8px); } to { opacity:1; transform:scale(1); filter:blur(0); } }
+@media (max-width:520px) { .question-card{padding:24px 16px}.cosmic-panel{padding:18px} #answer-zone{height:220px} #yes-btn{left:28%;top:60%} #no-btn{left:72%;top:60%} }
