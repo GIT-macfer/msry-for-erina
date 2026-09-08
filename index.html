@@ -11,51 +11,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="style.css?v=3" />
+<link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <!-- CINEMATIC OPENING: galaxy -> constellation heart -> Earth -> playful question -->
-  <section id="cosmic-intro" aria-label="Monthsary surprise intro">
-    <div id="cosmic-stars" aria-hidden="true"></div>
-    <div class="nebula nebula-a" aria-hidden="true"></div>
-    <div class="nebula nebula-b" aria-hidden="true"></div>
-
-    <div id="intro-opening" class="cosmic-panel active">
-      <p class="cosmic-kicker">FOR ERI • 1ST MONTHSARY</p>
-      <h1>I made you a little universe.</h1>
-      <p>Since you already discovered the flowers… I had to make the surprise a little bigger. 🤭</p>
-      <button id="begin-journey-btn" class="cosmic-btn" type="button" onclick="startJourney()">Enter our little universe ✨</button>
-    </div>
-
-    <div id="heart-scene" class="cosmic-panel" aria-hidden="true">
-      <div id="heart-constellation" aria-hidden="true"></div>
-      <p class="scene-caption">Somewhere between all these stars…</p>
-      <h2>I still found my favorite person.</h2>
-    </div>
-
-    <div id="earth-scene" class="cosmic-panel" aria-hidden="true">
-      <div class="solar-system" aria-hidden="true">
-        <div class="orbit orbit-one"><span class="tiny-planet"></span></div>
-        <div class="orbit orbit-two"><span class="tiny-planet planet-pink"></span></div>
-        <div id="earth"><span class="earth-shine"></span></div>
-      </div>
-      <p class="scene-caption">Okay… back to Earth. I have one important question.</p>
-    </div>
-
-    <div id="question-scene" class="cosmic-panel" aria-hidden="true">
-      <div class="question-card">
-        <p class="cosmic-kicker">VERY SERIOUS QUESTION 😌</p>
-        <h2>Do you want to continue loving Marc?</h2>
-        <p id="question-tease">Choose carefully HAHAHAHA</p>
-        <div id="answer-zone">
-          <button id="yes-btn" type="button">YES ❤️</button>
-          <button id="no-btn" type="button" tabindex="-1" aria-disabled="true">No 😭</button>
-        </div>
-      </div>
-    </div>
-  </section>
-
-
   <!-- ============================================================
        BACKGROUND LAYER
        Night sky gradient + generated stars/particles live here.
@@ -79,7 +37,7 @@
        MAIN GARDEN
        Every click/tap inside this element plants a flower.
   ============================================================= -->
-  <main id="garden" class="garden-locked" role="application" aria-label="Interactive flower garden, tap anywhere to plant a flower">
+  <main id="garden" role="application" aria-label="Interactive flower garden, tap anywhere to plant a flower">
 
     <!-- Soft title watermark, always present but very quiet -->
     <div id="garden-title">
@@ -127,6 +85,6 @@
 
   <!-- Small on-screen hint for the planting effect (ripple), created per-click in JS -->
 
-  <script src="script.js?v=3"></script>
+  <script src="script.js"></script>
 </body>
 </html>
