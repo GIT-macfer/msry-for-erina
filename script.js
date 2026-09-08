@@ -421,11 +421,23 @@ function createCinematicScenes() {
 
                 <div class="earth">
 
-                    <div class="earth-land land-one"></div>
+                    <div class="earth-rotator">
 
-                    <div class="earth-land land-two"></div>
+                        <div class="earth-land land-one"></div>
 
-                    <div class="earth-land land-three"></div>
+                        <div class="earth-land land-two"></div>
+
+                        <div class="earth-land land-three"></div>
+
+                        <div class="earth-land land-four"></div>
+
+                        <div class="earth-land land-five"></div>
+
+                    </div>
+
+                    <div class="earth-clouds"></div>
+
+                    <div class="earth-shading"></div>
 
                 </div>
 
@@ -1162,6 +1174,10 @@ let yesScale = 1;
 
 let yesTakeover = false;
 
+let lastEscapeTime = 0;
+
+const ESCAPE_COOLDOWN_MS = 550;
+
 
 const NO_REACTIONS = [
 
@@ -1191,6 +1207,22 @@ function escapeNoButton() {
     if (yesTakeover) {
         return;
     }
+
+
+    /*
+        Cooldown so a single hover near the
+        button can't fire dozens of times per
+        second (mousemove fires very often) and
+        instantly blow through every stage.
+    */
+
+    const now = Date.now();
+
+    if (now - lastEscapeTime < ESCAPE_COOLDOWN_MS) {
+        return;
+    }
+
+    lastEscapeTime = now;
 
 
     noAttempts++;
@@ -1286,8 +1318,10 @@ function escapeNoButton() {
     yesScale += 0.22;
 
 
-    yesBtn.style.transform =
-        `scale(${yesScale})`;
+    yesBtn.style.setProperty(
+        '--yes-scale',
+        yesScale
+    );
 
 
     yesBtn.style.zIndex =
@@ -1355,6 +1389,10 @@ function activateYesTakeover() {
     noBtn.classList.add(
         'no-defeated'
     );
+
+
+    noBtn.style.transform =
+        'scale(.5)';
 
 
     setTimeout(() => {
