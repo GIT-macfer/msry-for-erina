@@ -1416,88 +1416,16 @@ function activateYesTakeover() {
 
 /* ============================================================
    NO BUTTON EVENTS
+
+   By design: the No button does NOT move on hover. It stays
+   put and only jumps to a new random spot, plays a reaction,
+   and grows Yes a little more, the moment it's actually
+   clicked/tapped. After enough clicks it disappears for good.
    ============================================================ */
 
 /*
-   Desktop:
-   Escape BEFORE the cursor reaches it.
-*/
-
-noBtn.addEventListener(
-    'mouseenter',
-    escapeNoButton
-);
-
-
-/*
-   Mouse movement detection gives
-   the button a more "alive" feeling.
-*/
-
-questionScene.addEventListener(
-    'mousemove',
-    event => {
-
-        if (
-            yesTakeover ||
-            !questionScene.classList.contains(
-                'active'
-            )
-        ) {
-            return;
-        }
-
-
-        const rect =
-            noBtn.getBoundingClientRect();
-
-
-        const centerX =
-            rect.left +
-            rect.width / 2;
-
-
-        const centerY =
-            rect.top +
-            rect.height / 2;
-
-
-        const dx =
-            event.clientX -
-            centerX;
-
-
-        const dy =
-            event.clientY -
-            centerY;
-
-
-        const distance =
-            Math.sqrt(
-                dx * dx +
-                dy * dy
-            );
-
-
-        /*
-            Run when cursor gets
-            within 90 pixels.
-        */
-
-        if (
-            distance < 90
-        ) {
-
-            escapeNoButton();
-        }
-
-    }
-);
-
-
-/*
    Mobile:
-   Touching it causes immediate escape.
+   Tapping it counts as a click.
 */
 
 noBtn.addEventListener(
