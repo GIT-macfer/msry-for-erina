@@ -501,7 +501,11 @@ function createCinematicScenes() {
                     Choose wisely, baby. 🤨
                 </p>
 
+                <p class="question-hint">
+                    psst — zoom out (Ctrl/Cmd + −) kung gusto mo makita saan tumatakbo si No 👀
+                </p>
 
+                
                 <div
                     id="answer-area"
                     class="answer-area"
